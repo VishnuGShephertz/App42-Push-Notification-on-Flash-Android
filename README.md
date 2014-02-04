@@ -79,14 +79,20 @@ __Registering Device on App42:__ This function store device token on App42 using
 ```
 
 
-__Send PushNotification to User using ActionScript App42 API :__ If you want to send PushNotification message using App42 ActionScript API ,pass the userId and message in this method written in App42FlashHome.html file.
+__Send PushNotification to User using ActionScript App42 API :__ If you want to send PushNotification message using App42 ActionScript API ,pass the userId and message,title and image you want to shown when Push Notification arrives on device , written in App42FlashHome.html file.
  
 ```
-    private function onSendPushClick(event:MouseEvent):void
-            {
-              App42API.buildPushNotificationService().sendPushMessageToUser(userInput.text,messageInput.text,
-                  new App42FlashCallback());
-            }
+   private function onSendPushClick(event:MouseEvent):void
+			{
+				var jsonMessage:Object = new Object();
+				jsonMessage.title = "App42FlashPush"
+				jsonMessage.message = userInput.text
+				jsonMessage.image = "Your Image Url"	
+				var message:String =  String(jsonMessage);
+				trace(message);
+              App42API.buildPushNotificationService().sendPushMessageToUser(message,messageInput.text,
+				  new App42FlashCallback());
+			}
 
 ```
 
