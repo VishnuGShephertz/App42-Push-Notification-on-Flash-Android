@@ -58,7 +58,7 @@
 			
 			private function onSendPushClick(event:MouseEvent):void
 			{
-              App42API.buildPushNotificationService().sendPushMessageToUser("rukrssssuk",messageInput.text,
+              App42API.buildPushNotificationService().sendPushMessageToUser(userInput.text,messageInput.text,
 				  new App42FlashCallback());
 			}
 		
