@@ -2,7 +2,7 @@ App42-Push-Notification-on-Flash-Android
 =========================================
 # About Application
 
-1. This application shows how can we integrate PushNotification using App42 JavaScript API in Flash Android application.
+1. This application shows how can you integrate PushNotification using App42 ActionScript API in Flash Android application.
 2. How we can send PushNotification using App42 Action-Script PushNotification API.
 
 
@@ -84,16 +84,23 @@ __Send PushNotification to User using ActionScript App42 API :__ If you want to 
 ```
     private function onSendPushClick(event:MouseEvent):void
             {
-              App42API.buildPushNotificationService().sendPushMessageToUser("rukrssssuk",messageInput.text,
+              App42API.buildPushNotificationService().sendPushMessageToUser(userInput.text,messageInput.text,
                   new App42FlashCallback());
             }
+
+```
+
+__Customization Push Message:__ If you want to show your own image and title on Push Notification , You have to send Push Mesaage String as JsonObject in following format.
+ 
+```
+    {"message":"HI I am using App42 Push Notification","image":"Your Image Url","title":"App42FlashPush"}
 
 ```
 
 __Customization according to your application Package:__ If you are customizing your own Android Flash application that is built using Flash.
 So open App42FlashPush-app.xml file and make these changes.
 
-1. 1. Add following manifest component in your app.xml file.
+1. Add following manifest component in your app.xml file.
 
 ```
  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
