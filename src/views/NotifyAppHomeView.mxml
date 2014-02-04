@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="sample"
+		creationComplete="view_creationCompleteHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.shephertz.app42.callback.App42FlashCallback;
+			import com.shephertz.app42.paas.sdk.as3.App42API;
+			import com.shephertz.app42.paas.sdk.as3.App42Log;
+			import com.shephertz.app42.paas.sdk.as3.pushNotification.DeviceType;
+			import com.shephertz.app42.push.App42Push;
+			import com.shephertz.app42.push.events.App42PushEvent;
+			import com.shephertz.app42.push.events.App42RegistrationEvent;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.managers.PersistenceManager;
+			
+			protected var persistence:PersistenceManager = new PersistenceManager;
+			
+			protected var app42Push:App42Push;
+			
+			[Bindable]
+			protected var registered:Boolean = false;
+			
+			protected function view_creationCompleteHandler(event:FlexEvent):void
+			{
+				if (App42Push.isSupported)
+				{
+					// Using C2DM ANE to register application in C2DM service
+					app42Push = new App42Push;
+					// Listening for un/registered, error events
+					app42Push.addEventListener(App42RegistrationEvent.REGISTER, onRegistered);
+					app42Push.addEventListener(App42PushEvent.Message, onMessage);
+					intializeApi();
+					// Checking if application was already registered in App42 service
+					var registrationId:String = persistence.getProperty("registration_id") as String;
+					registered = registrationId != null;
+					if(registered){
+						app42Push.lastMessage();
+					}
+					else{
+						app42Push.register("531770420900");
+					}
+					trace("Current registration id:", registrationId);
+					
+				}
+			}
+			private function intializeApi():void
+			{
+				App42API.initialize("462302e01fed25065d6cb856ddfad422a871c05f39b4193e68a78da66eaa42b1","60735a72502ebff2d6b4318fed646049720063e3cdbda5d647ed27d97567e179");
+				App42API.buildLogService();
+				App42Log.setDebug(true);
+			}
+			
+			private function onMessage(event:App42PushEvent):void
+			{
+				trace("app42 Message:", event.message);
+				app42Push.resetCount();
+				message.text=event.message as String;
+			}
+			
+			protected function onSendPushClick(event:MouseEvent):void
+			{
+              App42API.buildPushNotificationService().sendPushMessageToUser("rukrssssuk",messageInput.text,new App42FlashCallback());
+			}
+		
+			private function onRegistered(event:App42RegistrationEvent):void
+			{
+				trace("Registered with registration id:", event.registrationId);
+				// Storing registration id received from C2DM service
+				persistence.setProperty("registration_id", event.registrationId);
+				App42API.buildPushNotificationService().storeDeviceToken("vishnu",
+				event.registrationId,DeviceType.ANDROID,new App42FlashCallback());
+				registered = true;
+			}
+			
+			
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:TextInput id="messageInput" text="Hey I am using App42 Flash Push" left="20" right="20" top="20"/>
+	<s:TextInput id="userInput" text="user" left="20" right="20" top="60"/>
+		<s:Button id="btnSendPush" label="SendPush" click="onSendPushClick(event) " 
+				   width="150" horizontalCenter="0" top="120"/>
+	<s:Label id="message" fontSize="20" fontWeight="bold" horizontalCenter="0" verticalCenter="0"/>
+	
+</s:View>
