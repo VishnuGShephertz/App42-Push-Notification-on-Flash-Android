@@ -13,7 +13,7 @@
 			import com.shephertz.app42.push.App42Push;
 			import com.shephertz.app42.push.events.App42PushEvent;
 			import com.shephertz.app42.push.events.App42RegistrationEvent;
-			import com.adobe.serialization.json.JSON;
+			
 			import mx.events.FlexEvent;
 			
 			import spark.managers.PersistenceManager;
@@ -59,12 +59,11 @@
 			private function onSendPushClick(event:MouseEvent):void
 			{
 				var jsonMessage:Object = new Object();
-				jsonMessage.title = "App42FlashPush"
-				jsonMessage.message = userInput.text
-				jsonMessage.image = "Your Image Url"	
-				var message:String =  String(jsonMessage);
-				trace(message);
-              App42API.buildPushNotificationService().sendPushMessageToUser(message,messageInput.text,
+				jsonMessage.title = "App42FlashPush";
+				jsonMessage.message = messageInput.text;
+				jsonMessage.image = "Your Image Url";
+				var message:String =  JSON.stringify(jsonMessage);
+              App42API.buildPushNotificationService().sendPushMessageToUser(userInput.text,message,
 				  new App42FlashCallback());
 			}
 		
