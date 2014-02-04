@@ -11,7 +11,7 @@
 	<!-- A universally unique application identifier. Must be unique across 
 		all AIR applications. Using a reverse DNS-style name as the id is recommended. 
 		(Eg. com.example.ExampleApplication.) Required. -->
-	<id>com.shephertz.app42.push.debug</id>
+	<id>com.shephertz.app42.push</id>
 
 	<!-- Used as the filename for the application. Required. -->
 	<filename>App42FlashPush</filename>
@@ -50,8 +50,7 @@
 	<initialWindow>
 		<!-- The main SWF or HTML file of the application. Required. -->
 		<!-- Note: In Flash Builder, the SWF reference is set automatically. -->
-		<content>[This value will be overwritten by Flash Builder in the
-			output app.xml]
+		<content>App42FlashPush.swf
 		</content>
 
 		<!-- The title of the main window. Optional. -->
