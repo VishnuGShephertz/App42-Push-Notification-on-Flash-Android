@@ -57,13 +57,13 @@ __Initializing App42API in ActionScript to send PushNotification :__ To Send Pus
 
 ```
 
-__Registering on GCM for PushNotification in Android:__ To get PushNotification you have to register on GCM using Google Project No written in App42FlashHome.mxmlfile.
+__Registering on GCM for PushNotification in Android:__ To get PushNotification you have to register on GCM using Google Project No written in App42FlashHome.mxml file.
  
 ```
             app42Push.register(AppConstants.ProjectNo);
 
 ```
-__Registering Device on App42:__ This function store device token on App42 using ActionScript API ,when we get registration event from Android Native written in App42FlashHome.mxmlfile.
+__Registering Device on App42:__ This function store device token on App42 using ActionScript API ,when we get registration event from Android Native written in App42FlashHome.mxml file.
 
 ```
    private function onRegistered(event:App42RegistrationEvent):void
@@ -79,7 +79,7 @@ __Registering Device on App42:__ This function store device token on App42 using
 ```
 
 
-__Send PushNotification to User using ActionScript App42 API :__ If you want to send PushNotification message using App42 ActionScript API ,pass the userId and message,title and image you want to shown when Push Notification arrives on device , written in App42FlashHome.html file.
+__Send PushNotification to User using ActionScript App42 API :__ If you want to send PushNotification message using App42 ActionScript API ,pass the userId and message,title and image you want to shown when Push Notification arrives on device , written in App42FlashHome.mxml file.
  
 ```
   	private function onSendPushClick(event:MouseEvent):void
@@ -92,6 +92,13 @@ __Send PushNotification to User using ActionScript App42 API :__ If you want to 
               App42API.buildPushNotificationService().sendPushMessageToUser(UserInput.text,message,
 				  new App42FlashCallback());
 			}
+
+```
+
+__Customize Push Title accordingly:__ If you want to show default title in nPush Notification please change in  App42FlashPush-app.xml file at line no 244 and now you have no need to pass title with message.
+ 
+```
+  	  <meta-data name="push_title" value="App42FlashPush"/>
 
 ```
 
