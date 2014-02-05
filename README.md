@@ -144,6 +144,7 @@ So open App42FlashPush-app.xml file and make these changes.
         </receiver>
         <service android:name="com.shephertz.app42.android.flash.push.App42GCMService" >
         </service>
+        <meta-data name="push_title" value="App42FlashPush"/>
     </application>
 
 ```
