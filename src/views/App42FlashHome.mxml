@@ -63,7 +63,7 @@
 				jsonMessage.message = messageInput.text;
 				jsonMessage.image = "Your Image Url";
 				var message:String =  JSON.stringify(jsonMessage);
-              App42API.buildPushNotificationService().sendPushMessageToUser(userInput.text,message,
+                App42API.buildPushNotificationService().sendPushMessageToUser(userInput.text,message,
 				  new App42FlashCallback());
 			}
 		
@@ -76,9 +76,7 @@
 				event.registrationId,DeviceType.ANDROID,new App42FlashCallback());
 				registered = true;
 			}
-			
-			
-			
+		
 		]]>
 	</fx:Script>
 	
