@@ -98,7 +98,7 @@ __Send PushNotification to User using ActionScript App42 API :__ If you want to 
 __Customize Push Title accordingly:__ If you want to show default title in nPush Notification please change in  App42FlashPush-app.xml file at line no 244 and now you have no need to pass title with message.
  
 ```
-  	  <meta-data name="push_title" value="App42FlashPush"/>
+  	  <meta-data android:name="push_title" android:value="App42FlashPush"/>
 
 ```
 
@@ -144,7 +144,7 @@ So open App42FlashPush-app.xml file and make these changes.
         </receiver>
         <service android:name="com.shephertz.app42.android.flash.push.App42GCMService" >
         </service>
-        <meta-data name="push_title" value="App42FlashPush"/>
+        <meta-data android:name="push_title" android:value="App42FlashPush"/>
     </application>
 
 ```
