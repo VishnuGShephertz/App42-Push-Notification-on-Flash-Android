@@ -150,3 +150,5 @@ So open App42FlashPush-app.xml file and make these changes.
 ```
 
 2.Replace "com.shephertz.app42.push" with your application package name in App42FlashPush-app.xml file of Sample project.
+
+__Customization of ANE(Android Native Extension):__ If you want to customize ANE(Android Native Extension) accordingly ,[here](https://github.com/VishnuGShephertz/App42-Push-Ane-Source) is ANE source code to build ANE according to your use cases.
